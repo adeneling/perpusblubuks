@@ -1,0 +1,9 @@
+<?php echo HTML::smartNav(route('dashboard'), 'Dashboard'); ?>
+
+<?php echo HTML::smartNav(route('admin.books.index'), 'Buku'); ?>
+
+<?php echo HTML::smartNav(route('admin.authors.index'), 'Penulis'); ?>
+
+<?php echo HTML::smartNav('#', 'Member'); ?>
+
+<?php echo HTML::smartNav('#', 'Peminjaman'); ?>

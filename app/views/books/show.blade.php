@@ -1,0 +1,1 @@
+/Users/rahmatawaludin/Sites/larapus/app/views/books/show.blade.php

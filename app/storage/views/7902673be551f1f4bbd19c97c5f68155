@@ -1,0 +1,39 @@
+<?php $__env->startSection('asset'); ?>
+    <?php echo $__env->make('layouts.partials.datatable', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php echo Datatable::table()
+    ->addColumn('email', 'last_login', 'full_name', '')
+    ->setOptions('aoColumnDefs',array(
+        array(
+            'sTitle' => 'Nama',
+            'aTargets' => [0]),
+        array(
+            'sTitle' => 'Email',
+            'aTargets' => [1]),
+        array(
+            'sTitle' => 'Login Terakhir',
+            'aTargets' => [2]),
+        array(
+            'bSortable' => false,
+            'aTargets' => [3])
+        ))
+    ->setOptions('bProcessing', true)
+    ->setUrl(route('admin.users.index'))
+    ->render('datatable.uikit'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

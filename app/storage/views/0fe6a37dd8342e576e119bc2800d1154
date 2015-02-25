@@ -1,0 +1,47 @@
+<?php $__env->startSection( 'title' ); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'breadcrumb' ); ?>
+    <li ><a href=" /" > Dashboard</a></li >
+    <li class=" uk-active" > <?php echo $title; ?> </li >
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'content' ); ?>
+    <?php echo Form:: open( array( 'url' => route( 'home.updatepassword' ), 'method' => 'post' , 'class' => 'uk-form uk-form-horizontal' )); ?>
+
+        <div class=" uk-form-row" >
+        <?php echo Form:: label ( 'oldpassword' , 'Password Lama' , array( 'class' => 'uk-form-label uk-text-left' )); ?>
+
+            <div class=" uk-form-controls" >
+                <?php echo Form:: password( 'oldpassword' , array( 'placeholder' => '*********' )); ?>
+
+            </div>
+        </div>
+        <div class=" uk-form-row" >
+            <?php echo Form:: label ( 'newpassword' , 'Password Baru' , array( 'class' => 'uk-form-label uk-text-left' )); ?>
+
+            <div class=" uk-form-controls" >
+            <?php echo Form:: password( 'newpassword' , array( 'placeholder' => '*********' )); ?>
+
+            </div>
+        </div>
+        <div class=" uk-form-row" >
+        <?php echo Form:: label ( 'newpassword_confirmation' , 'Konfirmasi Password Baru' , array('class' => 'uk-form-label uk-text-left' )); ?>
+
+            <div class=" uk-form-controls" >
+            <?php echo Form:: password( 'newpassword_confirmation' , array( 'placeholder' => '*********' )); ?>
+
+            </div>
+        </div>
+
+        <?php echo HTML:: divider(); ?>
+
+            <div class=" uk-form-row" >
+                <?php echo Form:: submitUk( 'Simpan' ); ?>
+
+            </div>
+    <?php echo Form:: close(); ?> 
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make( 'layouts.master' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

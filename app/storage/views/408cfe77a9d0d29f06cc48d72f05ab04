@@ -1,0 +1,15 @@
+<?php $__env->startSection( 'title' ); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('dashboard.navigations.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+<?php $__env->startSection( 'breadcrumb' ); ?>
+    <li > <?php echo $title; ?> </li >
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'content' ); ?>
+    Selamat datang di Menu Administrasi Larapus. Silahkan pilih menu administrasi yang diinginkan.
+<?php $__env->stopSection(); ?>

@@ -1,0 +1,27 @@
+
+<?php $__env->startSection('title'); ?>
+<?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('nav'); ?>
+<li > <a href="#" > Buku</a> </li>
+<li > <a href="#" > Member</a> </li>
+<li > <a href="#" > Peminjaman</a> </li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+	
+		<li >
+			<div class="uk-animation-scale-up"> 
+				<?php echo $title; ?> 
+			</div>
+		</li>
+	
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+	<div class="uk-animation-slide-right"> 
+		Selamat datang di Menu Administrasi Larapus. Silahkan pilih menu administrasi yang diinginkan.
+	</div>
+
+<?php $__env->stopSection(); ?>

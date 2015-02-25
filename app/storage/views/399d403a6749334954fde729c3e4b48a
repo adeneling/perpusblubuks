@@ -1,0 +1,13 @@
+<?php $__env->startSection( 'asset' ); ?>
+	<?php echo $__env->make( 'layouts.partials.datatable' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'title' ); ?>
+	<?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'content' ); ?>
+	<?php echo $__env->make( 'books._borrowdatatable' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make( 'layouts.master' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

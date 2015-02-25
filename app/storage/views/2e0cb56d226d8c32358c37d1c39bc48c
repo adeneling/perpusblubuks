@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Buku Larapus</title>
+    <link rel="stylesheet" href="<?php echo asset('packages/uikit/css/uikit.almost-flat.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo asset('css/app.css'); ?>" />
+</head>
+<body>
+    <h1>Data Buku Larapus</h1>
+    <hr>
+    <table class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <td>Judul</td>
+                <td>Jumlah</td>
+                <td>Stok</td>
+                <td>Penulis</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($books as $book): ?>
+            <tr>
+                <td><?php echo $book->title; ?></td>
+                <td><?php echo $book->amount; ?></td>
+                <td><?php echo $book->stock; ?></td>
+                <td><?php echo $book->author->name; ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</body>
+</html>

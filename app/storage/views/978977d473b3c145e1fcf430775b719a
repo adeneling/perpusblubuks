@@ -1,0 +1,5 @@
+<?php echo HTML::smartNav(route('dashboard'), 'Dashboard'); ?>
+
+<?php echo HTML::smartNav(route('member.books'), 'Buku'); ?>
+
+<?php echo HTML::smartNav(route('member.profile'), 'Profil'); ?>

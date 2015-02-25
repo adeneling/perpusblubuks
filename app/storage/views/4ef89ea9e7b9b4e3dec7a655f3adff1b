@@ -1,0 +1,50 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li><a href="<?php echo route('member.profile'); ?>">Profil</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php echo Form::open(array('url' => route('member.profile.update'), 'method' => 'post', 'class'=>'uk-form uk-form-horizontal')); ?>
+
+        <div class="uk-form-row">
+            <?php echo Form::label('first_name', 'Nama Depan', array('class' => 'uk-form-label uk-text-left')); ?>
+
+            <div class="uk-form-controls">
+                <?php echo Form::text('first_name', $user->first_name, array('placeholder'=>'Nama depan Anda')); ?>
+
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <?php echo Form::label('last_name', 'Nama Belakang', array('class' => 'uk-form-label uk-text-left')); ?>
+
+            <div class="uk-form-controls">
+                <?php echo Form::text('last_name', $user->last_name, array('placeholder'=>'Nama belakang Anda')); ?>
+
+            </div>
+        </div>
+
+        <div class="uk-form-row">
+            <?php echo Form::label('email', 'Email', array('class' => 'uk-form-label uk-text-left')); ?>
+
+            <div class="uk-form-controls">
+                <?php echo Form::text('email', $user->email, array('placeholder'=>'emailmu@website.com')); ?>
+
+            </div>
+        </div>
+        <?php echo HTML::divider(); ?>
+
+        <div class="uk-form-row">
+            <?php echo Form::submitUk('Simpan'); ?>
+
+        </div>
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,29 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    Selamat datang di Larapus.
+    <table class="uk-table">
+        <tbody>
+            <tr>
+                <td class="uk-text-muted">Login Terakhir</td>
+                <td><?php echo $lastlogin; ?></td>
+            </tr>
+            <tr>
+                <td class="uk-text-muted">Buku dipinjam</td>
+                <td>
+                    <?php if($books->count() == 0): ?>
+                        Tidak ada buku dipinjam
+                    <?php endif; ?>
+                    <ul>
+                    <?php foreach($books as $book): ?>
+                        <li><?php echo $book->title; ?> <a href="<?php echo route('books.return', ['books'=>$book->id]); ?>" class="uk-button uk-button-small">Kembalikan</a></li>
+                    <?php endforeach; ?>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<?php $__env->stopSection(); ?>

@@ -1,0 +1,52 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('asset'); ?>
+    <?php echo $__env->make('layouts.partials.select2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li><a href="<?php echo route('admin.books.index'); ?>">Buku</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php echo Form::open(array('url' => route('admin.books.exportpost'), 'method' => 'post', 'class'=>'uk-form uk-form-horizontal')); ?>
+
+        <div class="uk-form-row">
+            <?php echo Form::labelUk('author_id', 'Pilih Penulis'); ?>
+
+            <?php echo Form::select('author_id[]', []+Author::lists('name','id'), null, array(
+                    'multiple',
+                    'id'=>'author_id',
+                    'placeholder' => "Pilih Penulis",
+                    'style'=>'width:20%')); ?>
+
+        </div>
+
+        <div class="uk-form-row">
+            <?php echo Form::labelUk('type', 'Pilih Output'); ?>
+
+            <?php echo Form::radio('type', 'xls', true); ?> Excel
+            <?php echo Form::radio('type', 'pdf'); ?> PDF
+        </div>
+
+        <?php echo HTML::divider(); ?>
+
+        <div class="uk-form-row">
+            <?php echo Form::submitUk('Download'); ?>
+
+        </div>
+    <?php echo Form::close(); ?>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#author_id").select2({placeholder: 'Pilih Penulis', allowClear: true});
+        });
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

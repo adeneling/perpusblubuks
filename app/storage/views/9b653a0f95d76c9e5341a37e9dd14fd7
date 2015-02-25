@@ -1,0 +1,74 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li><a href="<?php echo route('admin.books.index'); ?>">Buku</a></li>
+    <li><a href="<?php echo route('admin.books.create'); ?>">Tambah Buku</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <a href="<?php echo route('admin.books.index'); ?>" class="uk-button uk-button-success">
+        <i class="uk-icon-check"></i> Selesai
+    </a>
+    <table class="uk-table uk-table-hover">
+        <thead>
+            <tr>
+                <th>Judul</th>
+                <th>Penulis</th>
+                <th>Jumlah</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($books as $book): ?>
+                <tr>
+                    <td><?php echo $book->title; ?></td>
+                    <td><?php echo $book->author->name; ?></td>
+                    <td><?php echo $book->amount; ?></td>
+                    <td>
+                    <?php echo Form::open(array('url' => route('admin.books.destroy', ['books'=>$book->id]), 'id'=>'form-'.$book->id, 'method'=>'delete', 'class'=>'uk-display-inline review-delete')); ?>
+
+                        <?php echo Form::submit('delete', array('class' => 'uk-button uk-button-small uk-button-danger')); ?>
+
+                    <?php echo Form::close(); ?>
+
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <a href="<?php echo route('admin.books.index'); ?>" class="uk-button uk-button-success">
+        <i class="uk-icon-check"></i> Selesai
+    </a>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('pagejs'); ?>
+    <script>
+    $(function() {
+        $('form.review-delete').on('click', function() {
+            // disable behaviour default dari tombol submit
+            event.preventDefault();
+            // hapus data buku dengan ajax
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                dataType: 'json',
+                data: {
+                    _method : 'DELETE',
+                    _token : $( this ).children( 'input[name=_token]' ).val()
+                }
+            }).done(function(data) {
+                // cari baris yang dihapus
+                baris = $('#form-'+data.id).closest('tr');
+                // hilangkan baris (fadeout kemudian remove)
+                baris.fadeOut(300, function() {$(this).remove()});
+            });
+        })
+    });
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

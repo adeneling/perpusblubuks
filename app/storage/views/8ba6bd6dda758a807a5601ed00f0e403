@@ -1,0 +1,46 @@
+<?php $__env->startSection('content'); ?>
+<div class="uk-text-center">
+    <div class="uk-vertical-align-middle" style="width: 500px;">
+        <?php echo $__env->make('layouts.partials.validation', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <h3>Masukkan password baru Anda :</h3>
+        <?php echo Form::open(array('url' => route('guest.storenewpassword'), 'method'=>'post', 'class' => 'uk-form uk-form-horizontal')); ?>
+
+
+            <div class="uk-form-row">
+                <?php echo Form::label('password', 'Password', array('class' => 'uk-form-label uk-text-left')); ?>
+
+                <div class="uk-form-controls">
+                    <?php echo Form::password('password', array('placeholder'=>'*********')); ?>
+
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <?php echo Form::label('password_confirmation', 'Konfirmasi Password', array('class' => 'uk-form-label uk-text-left')); ?>
+
+                <div class="uk-form-controls">
+                    <?php echo Form::password('password_confirmation', array('placeholder'=>'*********')); ?>
+
+                </div>
+            </div>
+
+            <div class="uk-form-row">
+                <?php echo Form::hidden('email', $email); ?>
+
+                <?php echo Form::hidden('resetCode', $resetCode); ?>
+
+            </div>
+
+
+            <div class="uk-form-row">
+                <?php echo Form::submit('Reset', array('class'=>'uk-width-1-1 uk-button uk-button-primary uk-button-large')); ?>
+
+            </div>
+        <?php echo Form::close(); ?>
+
+
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.guest', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

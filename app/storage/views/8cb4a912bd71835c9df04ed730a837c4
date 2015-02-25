@@ -1,0 +1,8 @@
+<?php $__env->startSection( 'asset' ); ?>
+	<?php echo $__env->make( 'layouts.partials.datatable' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection( 'content' ); ?>
+	<h1 class=" uk-heading-large" > <?php echo $title; ?> </h1 >
+	<?php echo $__env->make( 'books._borrowdatatable' , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>

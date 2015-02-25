@@ -1,0 +1,21 @@
+<div class="uk-form-row">
+    <?php echo Form::labelUk('template', 'Gunakan template terbaru'); ?>
+
+    <a class="uk-button uk-button-small uk-button-success" href="<?php echo route('admin.books.template'); ?>"><i class="uk-icon-cloud-download"></i> Download</a>
+</div>
+
+<div class="uk-form-row">
+    <?php echo Form::labelUk('excel', 'Pilih file'); ?>
+
+    <div class="form-controls">
+        <?php echo Form::file('excel'); ?>
+
+    </div>
+</div>
+
+<?php echo HTML::divider(); ?>
+
+<div class="uk-form-row">
+    <?php echo Form::submitUk('Import'); ?>
+
+</div>

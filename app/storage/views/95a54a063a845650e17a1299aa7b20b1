@@ -1,0 +1,76 @@
+<?php $__env->startSection('asset'); ?>
+    <?php echo $__env->make('layouts.partials.datatable', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php
+    $datatable = Datatable::table()
+        ->addColumn('id', 'book', 'user', 'borrowed_at', 'returned_at')
+        ->setOptions('aoColumnDefs',array(
+             array(
+                'bVisible' => false,
+                'aTargets' => [0]),
+            array(
+                'sTitle' => 'Buku',
+                'aTargets' => [1]),
+            array(
+                'sTitle' => 'Peminjam',
+                'aTargets' => [2]),
+            array(
+                'sTitle' => 'Tanggal Pinjam',
+                'aTargets' => [3]),
+            array(
+                'sTitle' => 'Tanggal Kembali',
+                'aTargets' => [4]),
+            ))
+        ->setOptions('bProcessing', true)
+        ->setUrl(route('admin.borrow'));
+        ?>
+
+        <?php echo $datatable->render(); ?>
+
+
+    <script>
+        $(function() {
+            $('\
+              <div id="filter_status" class="dataTables_length uk-margin-left" style="display: inline-block;">\
+                <label>Status \
+                    <select size="1" name="filter_status" aria-controls="filter_status">\
+                        <option value="all" selected="selected">Semua</option>\
+                        <option value="returned">Sudah Dikembalikan</option>\
+                        <option value="not-returned">Belum Dikembalikan</option>\
+                    </select>\
+                </label>\
+              </div>\
+            ').insertAfter('.dataTables_length');
+
+            $('select[name="filter_status"]').change(function() {
+                var $oTable = $('#<?php echo $datatable->getId(); ?>').dataTable();
+                switch (this.value) {
+                    case 'all' :
+                        $oTable.fnFilter('');
+                        break;
+                    case 'returned' :
+                        $oTable.fnFilter('data-returned="true"');
+                        break;
+                    case 'not-returned' :
+                        $oTable.fnFilter('data-returned="false"');
+                        break;
+                }
+            });
+        });
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

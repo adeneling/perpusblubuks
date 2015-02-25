@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><?php echo $__env->yieldContent('title'); ?> | Laravel Perpus</title>
+
+        <link rel="stylesheet" href="<?php echo asset('packages/uikit/css/uikit.almost-flat.min.css'); ?>" />
+        <link rel="stylesheet" href="<?php echo asset('css/app.css'); ?>" />
+        <script src="<?php echo asset('components/jquery/jquery.min.js'); ?>"></script>
+        <script src="<?php echo asset('packages/uikit/js/uikit.min.js'); ?>"></script>
+        <?php echo $__env->yieldContent('asset'); ?>
+        <!--
+        <h1 class="uk-heading-large" >
+            <?php echo $__env->yieldContent('title'); ?>
+            <?php echo $__env->yieldContent('title-button'); ?>
+        </h1>
+        -->
+    </head>
+    <body>
+    <div class="uk-container uk-container-center uk-margin-top">
+        <nav class="uk-navbar">
+            <a href="#" class="uk-navbar-brand uk-hidden-small">LaraPus</a>
+            <ul class="uk-navbar-nav uk-hidden-small">
+                
+                <?php if(Sentry::getUser()->hasPermission('regular')): ?>
+                    <?php echo $__env->make('dashboard.navigations.regular', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endif; ?>
+
+                <?php if(Sentry::getUser()->hasPermission('admin')): ?>
+                    <?php echo $__env->make('dashboard.navigations.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endif; ?>
+
+            </ul>
+            <div class="uk-navbar-nav uk-navbar-flip" >
+                <li class="uk-parent" data-uk-dropdown>
+                    <a href="" > <?php echo Sentry::getUser()->first_name . ' ' . Sentry::getUser()->last_name; ?> </a>
+                    <div class="uk-dropdown uk-dropdown-navbar" >
+                        <ul class="uk-nav uk-nav-navbar" >
+                            <li > <?php echo link_to_route('home.editpassword', 'Ubah Password'); ?> </li>
+                            <li class="uk-nav-divider" > </li>
+                            <li > <a href="<?php echo URL::to('logout'); ?>" > Logout</a> </li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+            <div class="uk-navbar-brand uk-navbar-center uk-visible-small">LaraPus</div>
+        </nav>
+        <div class="uk-container-center uk-margin-top">
+            <div class="uk-container-center uk-margin-top" >
+                <?php echo $__env->make('layouts.partials.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <ul class="uk-breadcrumb" >
+                    <?php echo $__env->yieldContent('breadcrumb'); ?>
+                </ul>
+
+                <h1 class="uk-heading-large" > 
+                    <?php echo $__env->yieldContent('title'); ?> 
+                    <?php echo $__env->yieldContent('title-button'); ?>
+                </h1>
+
+                <?php echo $__env->make('layouts.partials.validation', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                
+                <?php echo $__env->yieldContent('content'); ?>
+
+            </div>
+        </div>
+    </body>
+</html>

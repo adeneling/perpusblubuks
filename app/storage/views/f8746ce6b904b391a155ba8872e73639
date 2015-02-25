@@ -1,0 +1,41 @@
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('asset'); ?>
+    <?php echo $__env->make('layouts.partials.select2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><a href="/">Dashboard</a></li>
+    <li><a href="<?php echo route('admin.books.index'); ?>">Buku</a></li>
+    <li class="uk-active"><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <!-- Navigasi dengan tab untuk memilih cara input buku -->
+    <ul class="uk-tab" data-uk-tab="{connect:'#tambahbuku'}">
+        <li class="uk-active"><a href="#"><i class="uk-icon-pencil-square-o"></i> Isi Form</a></li>
+        <li ><a href="#"><i class="uk-icon-cloud-upload"></i> Upload Excel</a></li>
+    </ul>
+
+    <!-- Container dari isian tab -->
+    <ul id="tambahbuku" class="uk-switcher uk-margin">
+        <li>
+            <?php echo Form::open(array('url' => route('admin.books.store'), 'method' => 'post', 'files'=>'true', 'class'=>'uk-form uk-form-horizontal')); ?>
+
+                <?php echo $__env->make('books._form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo Form::close(); ?>
+
+        </li>
+        <li>
+            <?php echo Form::open(array('url' => route('admin.books.import'), 'method' => 'post', 'files'=>'true', 'class'=>'uk-form uk-form-horizontal')); ?>
+
+                <?php echo $__env->make('books._import', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo Form::close(); ?>
+
+        </li>
+    </ul>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

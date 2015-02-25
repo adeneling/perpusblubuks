@@ -1,0 +1,42 @@
+<?php $__env->startSection('asset'); ?>
+    <script src="<?php echo asset('js/Chart.min.js'); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+    <?php echo $title; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumb'); ?>
+    <li><?php echo $title; ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    Selamat datang di Menu Administrasi Larapus. Silahkan pilih menu administrasi yang diinginkan.
+    <hr>
+    <h4>Statistik Penulis</h4>
+    <canvas id="chartPenulis" width="400" height="400"></canvas>
+    <script>
+    var data = {
+        labels: <?php echo json_encode($authors); ?>,
+        datasets: [
+            {
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: <?php echo json_encode($books); ?>
+
+            }
+        ]
+    };
+
+    var ctx = document.getElementById("chartPenulis").getContext("2d");
+    var myLineChart = new Chart(ctx).Bar(data);
+
+    </script>
+<?php $__env->stopSection(); ?>
